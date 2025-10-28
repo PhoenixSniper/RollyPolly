@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "RollyPollyGameModeBase.generated.h"
 
+class URollyPollyWidget;
 /**
  * 
  */
@@ -19,7 +20,11 @@ protected:
 	int32 ItemsCollected = 0;
 	int32 ItemsInLevel = 0;
 
-	// TODO - Implement Widget Variables
+	UPROPERTY(EditAnywhere, Category="Widgets")
+	TSubclassOf<class UUserWidget> GameWidgetClass;
+
+	UPROPERTY()
+	URollyPollyWidget* GameWidget;
 
 	virtual void BeginPlay() override;
 

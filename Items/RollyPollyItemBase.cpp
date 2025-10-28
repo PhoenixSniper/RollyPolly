@@ -2,6 +2,8 @@
 
 
 #include "RollyPollyItemBase.h"
+
+#include "RollyPolly/Game/RollyPollyGameModeBase.h"
 #include "RollyPolly/Game/RollyPollyPlayer.h"
 
 // Sets default values
@@ -22,7 +24,6 @@ ARollyPollyItemBase::ARollyPollyItemBase()
 void ARollyPollyItemBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void ARollyPollyItemBase::OverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
@@ -36,7 +37,11 @@ void ARollyPollyItemBase::OverlapBegin(UPrimitiveComponent* OverlappedComponent,
 
 void ARollyPollyItemBase::Collected_Implementation()
 {
-	// TODO - Do Game Mode Stuffs
+	ARollyPollyGameModeBase* GameMode = Cast<ARollyPollyGameModeBase>(GetWorld()->GetAuthGameMode());
+	if (GameMode)
+	{
+		GameMode->ItemCollected();
+	}
 }
 
 
